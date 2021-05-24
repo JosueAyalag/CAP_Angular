@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LoginRequest } from '../model/login.module';
+import { Router } from '@angular/router';
+import { LoginRequest } from '../model/login.model';
+import { DataService } from '../services/data.service';
+import { LoginService } from '../services/login.service';
 
 
 
@@ -12,11 +15,16 @@ import { LoginRequest } from '../model/login.module';
 })
 export class LoginComponent implements OnInit {
   formLogin: FormGroup = this.formBuilder.group({});
+  disableButton = false;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private dataService: DataService) {
     this.formLogin = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
       password:['', [Validators.required, Validators.minLength(3)]]
+    });
+
+    this.dataService.isLoading.subscribe( isLoading =>{
+      this.disableButton = isLoading;
     });
   }
 
@@ -34,7 +42,23 @@ export class LoginComponent implements OnInit {
 
     console.log(data);
 
+    this.dataService.isLoading.next(true);
+
+
     /// mandar llamar servicio de login
+
+    this.loginService.login(data).subscribe((res)=>{
+      console.log(res);
+      this.dataService.isLoading.next(false);
+      this.router.navigate(['home']);
+       }, (err) =>{
+        this.dataService.isLoading.next(false);
+        console.log('ERR', err);
+        this.dataService.message.next(err.error.error);
+        // alert(err.error.error)
+        
+       
+    });
 
   }
 

@@ -1,0 +1,32 @@
+table{
+    width: 100%;
+   
+   
+}
+
+.table-audifonos{
+    padding-top: 70px;
+
+    
+}
+
+.table-audifonos h1{
+   text-align: center;
+   padding: 40px;
+   font-size: 5rem;
+   
+    
+}
+
+.top-form{
+   display: grid;
+    justify-content: center;
+    width: 100%;
+   
+   
+}
+
+.button-nuevo{
+   font-size: 2rem;
+}
+

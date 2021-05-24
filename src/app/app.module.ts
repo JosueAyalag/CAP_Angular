@@ -12,12 +12,21 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ContactComponent } from './contact/contact.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AudifonoComponent } from './audifono/audifono.component'; 
+import {MatTableModule} from '@angular/material/table'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ContactComponent
+    ContactComponent,
+    HomeComponent,
+    AudifonoComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +37,11 @@ import { ContactComponent } from './contact/contact.component';
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule,
+    MatProgressBarModule,
+    MatTableModule,
+    MatSnackBarModule
 
   ],
   providers: [],
